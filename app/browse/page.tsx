@@ -1,7 +1,4 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+import React from 'react';
 
 type Movie = {
   id: number;
@@ -10,28 +7,19 @@ type Movie = {
   overview: string;
 };
 
-export default function Browse() {
-  const [movies, setMovies] = useState<Movie[]>([]);
+async function getMovies(type: string) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${type}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+  );
+  return res.json();
+}
 
-  useEffect(() => {
-    async function fetchMovies() {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-        );
-        const json = await response.json();
-        console.log(json);
-        setMovies(json.results);
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
-    }
-    fetchMovies();
-  }, []);
-
+export default async function Page() {
+  const popularMovies = await getMovies('popular');
+  const movies = popularMovies.results;
   return (
     <>
-      {movies.map((movie) => (
+      {movies.map((movie: Movie) => (
         <div key={movie.id}>
           <h4>{movie.title}</h4>
           <img

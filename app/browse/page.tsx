@@ -14,7 +14,7 @@ const Browse = async ({ searchParams }: BrowseProps) => {
   const Popular = await getMovies('popular');
   const Upcoming = await getMovies('upcoming');
   const Nowplaying = await getMovies('now_playing');
-  
+
   const defaultData = {
     rank: 1,
     category: 'Top Rate',
@@ -22,7 +22,7 @@ const Browse = async ({ searchParams }: BrowseProps) => {
   };
 
   return (
-    <div className='bg-black w-full min-h-full pb-12 relative'>
+    <div className="bg-black w-full min-h-full pb-12 relative">
       <HomeNavBar />
       <HomeTop
         posterPath={searchParams.posterPath || defaultData.posterPath}
@@ -36,26 +36,14 @@ const Browse = async ({ searchParams }: BrowseProps) => {
         category={searchParams.category || defaultData.category}
       />
       <ContentsSlider
-        title='Preview'
+        title="Preview"
         isRanking={false}
         isPreview={true}
         contents={Nowplaying}
       />
-      <ContentsSlider
-        title='Nigeria Today'
-        isRanking={true}
-        contents={Top}
-      />
-      <ContentsSlider
-        title='Popular'
-        isRanking={false}
-        contents={Popular}
-      />
-      <ContentsSlider
-        title='Upcoming'
-        isRanking={false}
-        contents={Upcoming}
-      />
+      <ContentsSlider title="Nigeria Today" isRanking={true} contents={Top} />
+      <ContentsSlider title="Popular" isRanking={false} contents={Popular} />
+      <ContentsSlider title="Upcoming" isRanking={false} contents={Upcoming} />
     </div>
   );
 };

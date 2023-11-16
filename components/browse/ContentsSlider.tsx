@@ -20,7 +20,7 @@ const ContentsSlider = ({
 }: ContentsSliderProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseOnSlider, setIsMouseOnSlider] = useState<Boolean>(false);
-  
+
   const handleClickMoveButton = (direction: 'prev' | 'next') => {
     if (!containerRef.current) return;
     if (direction === 'prev') {
@@ -71,7 +71,6 @@ const ContentsSlider = ({
           {contents.map((content, idx) => (
             <ContentElement
               key={`${content.id}${content.title}`}
-              category={title}
               rank={isRanking ? idx + 1 : undefined}
               content={content}
               sequence={

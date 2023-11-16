@@ -1,11 +1,9 @@
 import { TContent } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { memo } from 'react';
 
 interface ContentElementProps {
   content: TContent;
-  category: string;
   rank: number | undefined;
   sequence: 'head' | 'tail' | 'mid';
   isPreview?: boolean;
@@ -13,7 +11,6 @@ interface ContentElementProps {
 
 const ContentElement = ({
   content,
-  category,
   rank,
   sequence,
   isPreview = false,
@@ -21,7 +18,7 @@ const ContentElement = ({
   const width = 103;
   const height = 161;
   const url = 'https://image.tmdb.org/t/p/w154';
-  let clickUrl = `/movies/${content.id}/${content.poster_path}`;
+  let clickUrl = `/movies/${content.id}`;
   if (rank) clickUrl += `&rank=${rank}`;
 
   const imageClasses = `object-cover ${isPreview ? 'rounded-full' : ''}`;
@@ -46,4 +43,4 @@ const ContentElement = ({
   );
 };
 
-export default memo(ContentElement);
+export default ContentElement;

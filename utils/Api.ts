@@ -10,6 +10,7 @@ export async function getMovies(type: string) {
     id: movie.id,
     poster_path: movie.poster_path,
     title: movie.title,
+    overview: movie.overview,
   }));
 
   return movies;
@@ -24,7 +25,7 @@ export const getSearchedMovies = async (query: string, page: number = 1) => {
 };
 export const getMovieDetails = async (id: string) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,
   );
   const data = await res.json();
 

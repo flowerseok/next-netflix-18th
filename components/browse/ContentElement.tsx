@@ -1,6 +1,7 @@
 import { TContent } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo } from 'react';
 
 interface ContentElementProps {
   content: TContent;
@@ -45,4 +46,4 @@ const ContentElement = ({
   );
 };
 
-export default ContentElement;
+export default memo(ContentElement);

@@ -9,11 +9,14 @@ interface DetailTopProps {
 
 const DetailTop = ({ title, posterPath }: DetailTopProps) => {
   const url = `https://image.tmdb.org/t/p/original/${posterPath}`;
+  const defaultImageUrl =
+    'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg';
+
   return (
     <div className="flex flex-col items-center w-full mb-[43px]">
       <div className="w-full h-[415px] overflow-hidden sm:h-[700px] md:h-[1000px] relative ">
         <Image
-          src={url}
+          src={posterPath ? url : defaultImageUrl}
           width={800}
           height={1200}
           alt="top poster"

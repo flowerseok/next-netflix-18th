@@ -50,10 +50,12 @@ const SearchPage = () => {
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const query = e.target.value.trim();
-    const data = await getSearchedMovies(query);
-    setMovies(data.results);
-    setPageNum(data.page);
-    setTotalPageNum(data.total_pages);
+    if (query) {
+      const data = await getSearchedMovies(query);
+      setMovies(data.results);
+      setPageNum(data.page);
+      setTotalPageNum(data.total_pages);
+    }
     setKeyword(query);
     if (!query) setInit(true);
   };
